@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Objetivos de Ganancia</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Objetivos de Ganancia Escalables</h1>
+  <a href="index.html" class="btn-objetivos">Volver al Registro</a>
+
+  <form id="objetivos-form">
+    <label>
+      Capital inicial (USDT):
+      <input type="number" id="capital-inicial" value="12" min="1" step="0.01" required>
+    </label>
+    <label>
+      Riesgo por operación (%):
+      <input type="number" id="riesgo" value="5" min="1" max="100" step="0.1" required>
+    </label>
+    <label>
+      Ratio riesgo/beneficio:
+      <input type="number" id="ratio" value="2" min="1" step="0.01" required>
+    </label>
+    <label>
+      Nº de operaciones objetivo:
+      <input type="number" id="num-operaciones" value="20" min="1" max="100" required>
+    </label>
+    <button type="submit">Calcular Objetivos</button>
+  </form>
+
+  <table id="tabla-objetivos">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Capital Inicial</th>
+        <th>Riesgo (USDT)</th>
+        <th>Objetivo Ganancia (USDT)</th>
+        <th>Capital Final (si gana)</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    const form = document.getElementById('objetivos-form');
+    const tbody = document.querySelector('#tabla-objetivos tbody');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const capitalInicial = parseFloat(document.getElementById('capital-inicial').value);
+      const riesgoPorcentaje = parseFloat(document.getElementById('riesgo').value);
+      const ratio = parseFloat(document.getElementById('ratio').value);
+      const numOperaciones = parseInt(document.getElementById('num-operaciones').value);
+
+      let capital = capitalInicial;
+      tbody.innerHTML = '';
+      for (let i = 1; i <= numOperaciones; i++) {
+        const riesgo = +(capital * (riesgoPorcentaje / 100)).toFixed(2);
+        const ganancia = +(riesgo * ratio).toFixed(2);
+        const capitalFinal = +(capital + ganancia).toFixed(2);
+
+        const fila = document.createElement('tr');
+        fila.innerHTML = `
+          <td>${i}</td>
+          <td>${capital.toFixed(2)}</td>
+          <td>${riesgo.toFixed(2)}</td>
+          <td>${ganancia.toFixed(2)}</td>
+          <td>${capitalFinal.toFixed(2)}</td>
+        `;
+        tbody.appendChild(fila);
+
+        capital = capitalFinal;
+      }
+    });
+
+    // Calcula automáticamente al cargar la página
+    form.dispatchEvent(new Event('submit'));
+  </script>
+</body>
+</html>

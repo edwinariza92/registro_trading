@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro de Trading</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <h1>Registro de Trading</h1>
+
+  <a href="objetivos.html" class="btn-objetivos">Ver Objetivos de Ganancia</a>
+  <a href="calculadora.html" class="btn-objetivos">Ver Calculadora de Riesgo</a>
+
+  <form id="trade-form">
+    <input type="date" id="fecha" required>
+    <input type="text" id="par" placeholder="Par (ej: APEUSDT)" required>
+    <select id="tipo">
+      <option value="Long">Long</option>
+      <option value="Short">Short</option>
+    </select>
+    <input type="number" id="entrada" min="0" step="0.0001" placeholder="Entrada" required>
+    <input type="number" id="salida" min="0" step="0.0001" placeholder="Salida" required>
+    <input type="number" id="sl" min="0" step="0.0001" placeholder="Stop Loss">
+    <input type="number" id="tp" min="0" step="0.0001" placeholder="Take Profit">
+    <input type="number" id="resultado"  step="0.0001" placeholder="Resultado USDT">
+    <input type="text" id="emocion" placeholder="Emoción">
+    <input type="text" id="comentario" placeholder="Comentario">
+    <br>
+    <button type="submit">Agregar Operación</button>
+    <button type="button" onclick="descargarCSV()">Descargar CSV</button>
+    <button type="button" onclick="limpiarTodo()">Borrar Todo</button>
+  </form>
+
+  <table id="tabla-operaciones">
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Par</th>
+        <th>Tipo</th>
+        <th>Entrada</th>
+        <th>Salida</th>
+        <th>SL</th>
+        <th>TP</th>
+        <th>Resultado</th>
+        <th>Emoción</th>
+        <th>Comentario</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script src="app.js"></script>
+    
+</body>
+</html>

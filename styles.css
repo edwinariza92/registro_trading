@@ -1,0 +1,156 @@
+/* Fondo general */
+body {
+  background: #f4f6fb;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Título */
+h1 {
+  text-align: center;
+  color: #2d3a4b;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+/* Formulario */
+form#trade-form {
+  background: #fff;
+  max-width: 900px;
+  margin: 0 auto 30px auto;
+  padding: 25px 30px 15px 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(44,62,80,0.08);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+}
+
+form#trade-form input,
+form#trade-form select {
+  padding: 8px 10px;
+  border: 1px solid #cfd8dc;
+  border-radius: 5px;
+  font-size: 1em;
+  margin-bottom: 10px;
+  min-width: 120px;
+  background: #f8fafc;
+  transition: border 0.2s;
+}
+
+form#trade-form input:focus,
+form#trade-form select:focus {
+  border: 1.5px solid #4f8cff;
+  outline: none;
+}
+
+form#trade-form button {
+  background: #4f8cff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 18px;
+  font-size: 1em;
+  margin: 5px 3px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+form#trade-form button[type="button"] {
+  background: #e0e7ef;
+  color: #2d3a4b;
+}
+
+form#trade-form button:hover {
+  background: #2563eb;
+  color: #fff;
+}
+
+/* Tabla */
+#tabla-operaciones {
+  width: 95%;
+  margin: 0 auto 40px auto;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(44,62,80,0.08);
+}
+
+#tabla-operaciones th, #tabla-operaciones td {
+  padding: 10px 8px;
+  text-align: center;
+}
+
+#tabla-operaciones th {
+  background: #4f8cff;
+  color: #fff;
+  font-weight: 600;
+  border-bottom: 2px solid #e0e7ef;
+}
+
+#tabla-operaciones tr:nth-child(even) {
+  background: #f4f6fb;
+}
+
+#tabla-operaciones tr:hover {
+  background: #e0e7ef;
+}
+
+#tabla-operaciones td button {
+  background: #f59e42;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 12px;
+  margin: 0 2px;
+  cursor: pointer;
+  font-size: 0.95em;
+  transition: background 0.2s;
+}
+
+#tabla-operaciones td button:hover {
+  background: #e76f51;
+}
+
+/* Botón/link para objetivos */
+.btn-objetivos {
+  display: inline-block;
+  margin: 20px auto 10px auto;
+  padding: 10px 22px;
+  background: #2563eb;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1em;
+  box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+  transition: background 0.2s;
+}
+.btn-objetivos:hover {
+  background: #4f8cff;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  form#trade-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  #tabla-operaciones {
+    font-size: 0.95em;
+  }
+}
+
+@media (max-width: 700px) {
+  form#trade-form {
+    padding: 15px 5px;
+  }
+  #tabla-operaciones th, #tabla-operaciones td {
+    padding: 6px 2px;
+    font-size: 0.9em;
+  }
+}

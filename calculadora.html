@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora de Riesgo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    .result {
+      margin-top: 15px;
+      padding: 10px;
+      background: #e7f3e7;
+      border: 1px solid #b2d8b2;
+      border-radius: 6px;
+    }
+    .btn-objetivos {
+  display: inline-block;
+  margin: 20px auto 10px auto;
+  padding: 10px 22px;
+  background: #2563eb;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1em;
+  box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+  transition: background 0.2s;
+}
+  </style>
+</head>
+<body>
+  <a href="index.html" class="btn-objetivos">Volver al Registro</a>
+
+  <div class="container">
+    <h2>Calculadora de Gestión de Riesgo</h2>
+    <label>Capital disponible (USDT):</label>
+    <input type="number" id="capital" placeholder="Ej: 12">
+
+    <label>Riesgo por operación (%):</label>
+    <input type="number" id="riesgo" placeholder="Ej: 5">
+
+    <label>Distancia del Stop Loss (%):</label>
+    <input type="number" id="sl" placeholder="Ej: 2">
+
+    <label>Apalancamiento:</label>
+    <input type="number" id="apalancamiento" placeholder="Ej: 10">
+
+    <button onclick="calcularRiesgo()">Calcular</button>
+
+    <div class="result" id="resultado"></div>
+  </div>
+
+  <script>
+    function calcularRiesgo() {
+      const capital = parseFloat(document.getElementById('capital').value);
+      const riesgo = parseFloat(document.getElementById('riesgo').value) / 100;
+      const sl = parseFloat(document.getElementById('sl').value) / 100;
+      const apalancamiento = parseFloat(document.getElementById('apalancamiento').value);
+
+      if (isNaN(capital) || isNaN(riesgo) || isNaN(sl) || isNaN(apalancamiento)) {
+        document.getElementById('resultado').innerHTML = 'Por favor completa todos los campos correctamente.';
+        return;
+      }
+
+      const riesgoUSD = capital * riesgo;
+      const tamanoPosicion = riesgoUSD / sl;
+      const margenNecesario = tamanoPosicion / apalancamiento;
+
+      document.getElementById('resultado').innerHTML = `
+        <strong>Resultado:</strong><br>
+        Riesgo en USDT: <strong>${riesgoUSD.toFixed(2)} USDT</strong><br>
+        Tamaño de la posición: <strong>${tamanoPosicion.toFixed(2)} USDT</strong><br>
+        Margen necesario: <strong>${margenNecesario.toFixed(2)} USDT</strong>
+      `;
+    }
+  </script>
+</body>
+</html>
